@@ -1,0 +1,26 @@
+# Staging values for helm-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+
+image:
+  repository: vasanthagokul/dotnet-print-appsettings
+  pullPolicy: Always
+  tag: latest
+
+configMap:
+  Environment: "staging-k8s-cluster"
+  Database__ConnectionString: "connection string from staging values yaml"
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 256Mi
+  requests:
+    cpu: 150m
+    memory: 128Mi

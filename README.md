@@ -66,7 +66,7 @@ docker run -d -p 8080:80 \
 
 ![Docker Override Output Screenshot](images/docker-override-output.png)
 
-## To deploy on Kubernetes with Helm:
+## Cluster Deployment:
 
 ### Start minikube:
 ```bash
@@ -75,15 +75,40 @@ minikube start
 
 ### Install with Helm:
 ```bash
-helm install dotnet-print-appsettings ./helm-chart
+helm upgrade --install dotnet-print-appsettings ./helm-chart
 ```
 
 ### Port forward to access the service:
 ```bash
-kubectl port-forward service/dotnet-print-appsettings 8080:80
+kubectl port-forward service/dotnet-print-appsettings-helm-chart 8080:80
 ```
 
 ### The values in the appsettings.json are overriden by the values present in the helm chart
-![Overriden Output Screenshot](images/overriden-values.png)
+![K8s Override Output Screenshot](images/k8s-override-output.png)
+
+## Using Different Values Files:
+
+You can override values using different values.yaml files for different environments:
+
+```bash
+helm upgrade --install dotnet-print-appsettings ./helm-chart -f ./helm-chart/values-prod.yaml
+```
+
+```bash
+helm upgrade --install dotnet-print-appsettings ./helm-chart -f ./helm-chart/values-staging.yaml
+```
+
+**Note:** If the application doesn't reflect the new values immediately, restart the deployment:
+```bash
+kubectl rollout restart deployment/dotnet-print-appsettings-helm-chart
+```
+
+## Centralized Helm Charts:
+
+In production environments, it's common to use centralized Helm chart repositories. This allows teams to:
+- Share common chart templates across multiple applications
+- Maintain consistent deployment patterns
+- Version control chart changes independently from application code
+- Use tools like Helm repositories, ChartMuseum, or OCI registries for chart distribution
 
 
