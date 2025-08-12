@@ -46,7 +46,7 @@ securityContext: {}
   # runAsUser: 1000
 
 configMap:
-  Environment: "Production"
+  Environment: "k8s-cluster"
   Database__ConnectionString: "connection string from values yaml"
 
  
