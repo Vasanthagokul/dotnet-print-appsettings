@@ -55,7 +55,7 @@ connection string: this is fetched from appsettings.json<br>
 ![Output Screenshot](images/output-ss.png)
 
 
-## To run with overridden appsettings values:
+## To run with Docker environment variable overrides:
 ```bash
 docker run -d -p 8080:80 \
   -e Environment="Docker" \
