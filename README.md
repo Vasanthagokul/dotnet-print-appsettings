@@ -1,8 +1,12 @@
 ## To build the docker image:
+```bash
 docker build -t dotnet-print-appsettings .
+```
 
 ## To run this image as a container:
+```bash
 docker run -d -p 8080:80 --name dotnet-print-appsettings-container dotnet-print-appsettings
+```
 
 <br>
 
@@ -18,11 +22,13 @@ connection string: this is fetched from appsettings.json<br>
 
 
 ## To run with overridden appsettings values:
+```bash
 docker run -d -p 8080:80 \
   -e AppSettings__Environment="Production" \
   -e AppSettings__ConnectionString="Server=prod-server;Database=proddb;User Id=produser;Password=prodpass;" \
   --name dotnet-print-appsettings-container \
   dotnet-print-appsettings
+```
 
 ![Docker Override Output Screenshot](images/docker-override-output.png)
 
