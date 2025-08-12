@@ -83,6 +83,8 @@ helm upgrade --install dotnet-print-appsettings ./helm-chart
 kubectl port-forward service/dotnet-print-appsettings-helm-chart 8080:80
 ```
 
+**Note:** If the port-forward connection drops during helm operations or pod restarts, rerun the port-forward command above.
+
 ### The values in the appsettings.json are overriden by the values present in the helm chart
 ![K8s Override Output Screenshot](images/k8s-override-output.png)
 
@@ -102,6 +104,8 @@ helm upgrade --install dotnet-print-appsettings ./helm-chart -f ./helm-chart/val
 ```bash
 kubectl rollout restart deployment/dotnet-print-appsettings-helm-chart
 ```
+
+
 
 ## Centralized Helm Charts:
 
